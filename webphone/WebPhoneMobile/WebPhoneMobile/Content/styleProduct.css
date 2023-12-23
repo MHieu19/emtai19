@@ -1,0 +1,98 @@
+﻿section {
+    padding: 20px;
+}
+.title {
+    position: relative;
+}
+.title .title-one {
+    margin-bottom: 20px;
+}
+.title .title-one .title-content {
+    text-align: center;
+}
+.title-one .title-content::before {
+    position: absolute;
+    content: '';
+    right: 0;
+    left: 0;
+    top: 20px;
+    width: 50%;
+    height: 1px;
+    background: #dcdcdc;
+    margin: 0 auto;
+}
+.title .title-one .title-content h2 {
+    font-size: 32px;
+    text-transform: uppercase;
+    margin: 0;
+    font-weight: 600;
+    display: inline-block;
+    position: relative;
+    letter-spacing: 1px;
+    padding: 0 50px;
+    background-color: #fff;
+    font-family: var(--bs-body-font-family);
+}
+.section-table {
+    padding: 30px;
+}
+.table > tbody {
+    vertical-align: middle;
+}
+th {
+    font-size: 18px;
+    font-family: 'themify';
+}
+.flex {
+    display: flex;
+}
+.flex .arrange-one {
+    flex: 3;
+}
+.arrange h2 {
+    font-size: 22px;
+    text-align: center;
+    font-family: 'themify';
+}
+.arrange .btn-sm {
+    --bs-btn-padding-x: 10.9935px;
+    background: #fff;
+    letter-spacing: 1.2px;
+    border: #030254 1px solid;
+    border-radius: 8px;
+}
+.arrange .btn-sm a {
+   text-decoration: none;
+}
+.arrange .btn-sm:hover {
+    color: #fff;
+    background: #030254;
+    border: #fff 1px solid;
+   /* opacity: 0.5;*/
+}
+.btn:first-child:active {
+    color: #030254;
+    background-color: #fff;
+    border-color: #030254;
+}
+.btn-sm {
+    --bs-btn-padding-x: 50.9935px;
+    background: #030254;
+    letter-spacing: 1.2px;
+    border: #030254 1px solid;
+    border-radius: 8px;
+    color: #fff;
+}
+.btn-sm:hover {
+    color: #030254;
+    background: #fff;
+    border: #030254 1px solid;
+   /* opacity: 0.5;*/
+}
+.pagination {
+    display: inline-block;
+    padding-left: 0;
+    margin: 10px 0;
+    border-radius: 4px;
+}
+

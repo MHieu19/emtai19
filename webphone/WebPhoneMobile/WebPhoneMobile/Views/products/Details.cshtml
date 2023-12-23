@@ -1,0 +1,56 @@
+﻿@model WebPhoneMobile.Models.product
+@using WebPhoneMobile.Models
+<link rel="stylesheet" href="~/Content/styleProduct_detail.css" />
+@{
+    ViewBag.Title = "Details";
+}
+<div class="detail">
+    <h2>Product Detail</h2>
+    <section id="detail-product">
+        <div id="detail-section">
+            <hr />
+            <div class="detail-content">
+                <div class="content-one">
+                    <div class="content-product">
+                        <h3>Product Name</h3>
+                        <div class="product">@Html.DisplayFor(model => model.product_name)</div>
+                    </div>
+                    <div class="content-category">
+                        <h3>Category</h3>
+                        <div class="category">@Html.DisplayFor(model => model.category.category_name)</div>
+                    </div>
+                    <div class="content-specifications">
+                        <h3>Specifications</h3>
+                        <div>@Html.DisplayFor(model => model.product_detail)</div>
+                    </div>
+                    <div class="content-price">
+                        <h3>Price</h3>
+                        <div class="price">$@Html.DisplayFor(model => model.price).00</div>
+                    </div>
+                </div>
+                <div class="content-two">
+                    <div class="content-img">
+                        <h3>Image</h3>
+                        <div class="image">@Html.Image("../../" + Model.product_image, "alt", "100")</div>
+                    </div>
+                </div>
+            </div>
+            <div class="detail-btn">
+                <div class="btn_add_home_back">
+                    <a class="btn btn-success btn-sm " href="@Url.Action("AddToCart", "shoppingcart", new {product_id = @Model.product_id})">
+                        <span class="glyphicon glyphicon-shopping-cart"></span>
+                        Add <lable class="ti-shopping-cart"></lable>
+                    </a>
+                    <a class="btn btn-success btn-sm" href="@Url.Action("Index", "Home",new {product_id = @Model.product_id})">
+                        Home
+                    </a>
+                    <a class="btn btn-success btn-sm" href="@Url.Action("Index", "products",new {product_id = @Model.product_id})">
+                        Back
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+
+

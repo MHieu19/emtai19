@@ -1,0 +1,24 @@
+﻿@model Microsoft.AspNet.Identity.EntityFramework.IdentityRole
+<div>
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(m => m.Name)
+        </dt>
+        <dd>
+            @Html.DisplayFor(m => m.Name)
+            <h5>User in Roles:</h5>
+            @if (ViewBag.UserCount > 0)
+            {
+                <table class="table">
+                    @foreach (var item in ViewBag.Users)
+                    {
+                        <tr>
+                            <td>@item.UserName</td>
+                        </tr>
+                    }
+                </table>
+            }
+        </dd>
+    </dl>
+</div>
+<p> @Html.ActionLink("Back", "Index") </p>

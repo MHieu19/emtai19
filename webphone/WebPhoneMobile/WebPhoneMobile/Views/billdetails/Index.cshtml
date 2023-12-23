@@ -1,0 +1,51 @@
+﻿@model IEnumerable<WebPhoneMobile.Models.billdetail>
+
+@{
+    ViewBag.Title = "Bill Detail";
+}
+
+<h2>Bill Detail</h2>
+@foreach (var m in ViewBag.Main)
+{
+    <h4>Invoice Number: @m.bill.bill_id</h4>
+    <h4>Client name: @m.client.client_name</h4>
+}
+<table class="table table-striped">
+    <tr>
+        <th>Numerical order</th>
+        <th>Product name</th>
+        <th>Quantity</th>
+        <th>Price</th>
+        <th>Into money</th>
+    </tr>
+    @{
+        double TotalAmount = 0;
+        int i = 0;
+    }
+    @foreach (var item in ViewBag.Sub)
+    {
+        i++;
+        TotalAmount += (Convert.ToDouble(item.billdetail.quanlity) * Convert.ToDouble(item.billdetail.price));
+        <tr>
+            <td>@i</td>
+            <td>@item.product.product_name</td>
+            <td>@item.billdetail.quanlity</td>
+            <td>$@item.billdetail.price.00</td>
+            <td>$@item.amount.00</td>
+            @*<td>@String.Format("{0:0,##0}", item.billdetail.price) $</td>*@
+            @*<td>@String.Format("{0:0,##0}", item.amount) $</td>*@
+        </tr>
+    }
+    <tr>
+        <th></th>
+        <th></th>
+        <th></th>
+        <th>Total Amount:</th>
+        <th><text>@*@String.Format("{0:0,##0}", TotalAmount)*@ $@TotalAmount.00</text></th>
+    </tr>
+</table>
+<div>
+    <a class="btn btn-success btn-sm" href="@Url.Action("Index", "bills")">
+        Back to List
+    </a>
+</div>

@@ -1,0 +1,54 @@
+﻿.info-client .btn-sm {
+    --bs-btn-padding-x: 10.9935px;
+    background: #030254;
+    letter-spacing: 1.2px;
+    border: #030254 1px solid;
+    border-radius: 8px;
+    color: #fff;
+}
+.info-client .btn-sm a {
+    color: #fff;
+    text-decoration: none;
+}
+.btn-sm {
+    --bs-btn-padding-x: 50.9935px;
+    background: #030254;
+    letter-spacing: 1.2px;
+    border: #030254 1px solid;
+    border-radius: 8px;
+    color: #fff;
+}
+.btn-order .btn-sm:hover {
+    color: #030254;
+    background: #fff;
+    border: #030254 1px solid;
+   /* opacity: 0.5;*/
+}
+.btn:first-child:active {
+    color: #fff;
+    background-color: #030254;
+    border-color: var(--bs-btn-active-border-color);
+}
+.info-client {
+    display :flex;
+    font-size: 18px;
+    padding-left: 30px;
+}
+.order-product {
+    padding: 5px 0 10px 50px;
+    font-size: 18px;
+}
+.info-client_id {
+    padding: 10px;
+}
+.info_address {
+    padding: 10px;
+}
+.btn-order {
+    padding: 10px;
+}
+.back .btn:hover {
+    color: var(--bs-btn-hover-color);
+    background-color: var(--bs-btn-hover-bg);
+    border-color: #030254;
+}

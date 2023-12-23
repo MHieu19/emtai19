@@ -1,0 +1,265 @@
+﻿@model PagedList.IPagedList<WebPhoneMobile.Models.product>
+@using WebPhoneMobile.Models;
+@using PagedList.Mvc;
+<link rel="stylesheet" href="~/Content/PagedList.css" />
+<link href="~/Content/styleHome.css" rel="stylesheet" />
+<link rel="stylesheet" href="~/Content/themify-icons/themify-icons.css" />
+@{
+    ViewBag.Title = "Home Page";
+}
+
+<section>
+    <div id="">
+        @*<a href="/Home">*@<img src="~/Images/logo.png" style="width:330px"/>@*</a>*@
+    </div>
+    <div>
+        @using (Html.BeginForm())
+        {
+            <div>
+                <div class="search">
+                    <h4>Find Product</h4>
+                    <input placeholder="Enter the name of the product you are looking for." class="search-content" id="searchString" name="searchString" type="text" value="">
+                    @*@Html.TextBox("searchString", "", new { @class = "form-control" })*@
+                    <button class="btn-search ti-search" type="submit"></button>
+                    @*<input type="submit" class="btn btn-default ti-search" value="" />*@
+                </div>
+            </div>
+        }
+    </div>
+    <div>
+        <div class="title">
+            <div class="title-one">
+                <div class="title-content">
+                    <h2>PRODUCT</h2>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div>
+        <div class="row">
+            @foreach (var item in Model)
+            {
+                <div class="col-sm-3">
+                    <div class="row-image">@Html.Image("../" + item.product_image, "alt", "200")</div> <br />
+                    <h3 class="row-text">@Html.DisplayFor(modelItem => item.product_name) </h3>
+                    <span class="row-number">$@Html.DisplayFor(modelItem => item.price).00</span><br />
+                    <div class="row-button">
+                        <a class="btn btn-info btn-sm" href="@Url.Action("Details", "products",new {id = item.product_id})">
+                            DETAIL
+                        </a>
+                    </div>
+                </div>
+            }
+        </div>
+        <div id="page" style="font-family: 'themify'; font-weight: 700;">
+            @*Trang @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) /@Model.PageCount*@
+            <div class="page">page @Model.PageNumber / @Model.PageCount</div>
+            @Html.PagedListPager(Model, page => Url.Action("Index",
+            new
+                {
+            page,
+            currentFilter = ViewBag.CurrentFilter
+            }))
+        </div>
+    </div>
+    <div>
+        <div class="title">
+            <div class="title-two">
+                <div class="title-content">
+                    <h2>NEW PRODUCT</h2>
+                </div>
+            </div>
+        </div>
+    </div>
+    <section id="slider">
+        <div class="aspect-ratio-169">
+            <img src="~/Images/banner_sony10II.png" />
+            <a href="/products/Details/SP018"><img src="~/Images/banner_rog6.png" /></a>
+            <img src="~/Images/banner_samsung_note10.jpg" />
+            <a href="/products/Details/SP031"><img src="~/Images/banner_iphone14.png" /></a>
+            <img src="~/Images/banner_redmi10.jpeg" />
+        </div>
+        <div class="dot-container">
+            <div class="dot active"></div>
+            <div class="dot"></div>
+            <div class="dot"></div>
+            <div class="dot"></div>
+            <div class="dot"></div>
+        </div>
+    </section>
+    <div>
+        <div class="title">
+            <div class="title-three">
+                <div class="title-content">
+                    <h2>LATEST NEWS</h2>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="latest-new">
+        <div class="latest">
+            <div class="owl-item active">
+                <div class="item container ">
+                    <div class="container-inner">
+                        <div class="post-image-outer">
+                            <div class="post-image">
+                                <img decoding="async" class="post-img" src="~/Images/Image_latest/latest_new_1.jpg" alt="">
+                            </div>
+                        </div>
+                        <div class="post-content-outer">
+                            <div class="post-content-inner">
+                                <div class="post-detail">
+                                    <div class="post-title">
+                                        @Html.ActionLink("Configuration Z Fold 5", "Index", "LatestNew_1")
+                                    </div>
+                                    <div class="blog-author-inner"><span class="author vcard"><a class="url-author" href="" title="" rel="author">Admin</a></span></div>
+                                    <div class="post-date-outer">
+                                        <div class="post-date">
+                                            <div class="blog_day">08</div>
+                                            <div class="blog_month">July</div>
+                                            <div class="blog_year">2023</div>
+                                        </div>
+                                    </div>
+                                    <div class="post-description">Configuration Z Fold 5 New hinge, no fold screen and a series of other upgrades</div>
+                                    <div class="blog-read-more"><a class="read-more-link" @Html.ActionLink("Read more", "Index", "LatestNew_1")</a></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="owl-item active">
+                <div class="item container ">
+                    <div class="container-inner">
+                        <div class="post-image-outer">
+                            <div class="post-image">
+                                <img decoding="async" class="post-img" src="~/Images/Image_latest/latest_new_2.jpg" alt="">
+                            </div>
+                        </div>
+                        <div class="post-content-outer">
+                            <div class="post-content-inner">
+                                <div class="post-detail">
+                                    <div class="post-title">
+                                        @Html.ActionLink("YouTube There Are New Features", "Index", "LatestNew_2")
+                                    </div>
+                                    <div class="blog-author-inner"><span class="author vcard"><a class="url-author" href="" title="" rel="author">Admin</a></span></div>
+                                    <span class="blog-bag"></span>
+                                    <div class="post-date-outer">
+                                        <div class="post-date">
+                                            <div class="blog_day">07</div>
+                                            <div class="blog_month">July</div>
+                                            <div class="blog_year">2023</div>
+                                        </div>
+                                    </div>
+                                    <div class="post-description">YouTube is about to have a convenient feature, watching videos will be more comfortable now</div>
+                                    <div class="blog-read-more"><a class="read-more-link" @Html.ActionLink("Read more", "Index", "LatestNew_2")</a></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="owl-item active">
+                <div class="item container ">
+                    <div class="container-inner">
+                        <div class="post-image-outer">
+                            <div class="post-image">
+                                <img decoding="async" class="post-img" src="~/Images/Image_latest/latest_new_3.jpg" alt="">
+                            </div>
+                        </div>
+                        <div class="post-content-outer">
+                            <div class="post-content-inner">
+                                <div class="post-detail">
+                                    <div class="post-title">
+                                        @Html.ActionLink("Summer Is Here", "Index", "LatestNew_3")
+                                    </div>
+                                    <div class="blog-author-inner"><span class="author vcard"><a class="url-author" href="" title="" rel="author">Admin</a></span></div>
+                                    <span class="blog-bag"></span>
+                                    <div class="post-date-outer">
+                                        <div class="post-date">
+                                            <div class="blog_day">06</div>
+                                            <div class="blog_month">July</div>
+                                            <div class="blog_year">2023</div>
+                                        </div>
+                                    </div>
+                                    <div class="post-description">Summer is here, buy these super camera phones to capture the world</div>
+                                    <div class="blog-read-more"><a class="read-more-link" @Html.ActionLink("Read more", "Index", "LatestNew_3")</a></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="bottom">
+    <div class="bottom">
+        <div class="bottom-content">
+            <div class="image">
+                <img class="bottom-img" src="~/Images/Image_Home/customer.png" />
+            </div>
+            <div class="content">
+                24 X 7 Free Support
+            </div>
+        </div>
+        <div class="bottom-content">
+            <div class="image">
+                <img class="bottom-img" src="~/Images/Image_Home/money.png " />
+            </div>
+            <div class="content">
+                Money Back Guarantee
+            </div>
+        </div>
+        <div class="bottom-content">
+            <div class="image">
+                <img class="bottom-img" src="~/Images/Image_Home/ship.png" />
+            </div>
+            <div class="content">
+                Free Worldwide Shipping
+            </div>
+        </div>
+        <div class="bottom-content">
+            <div class="image">
+                <img class="bottom-img" src="~/Images/Image_Home/gift.png" />
+            </div>
+            <div class="content">
+                Win $100 To Shop
+            </div>
+        </div>
+    </div>
+</section>
+
+
+
+
+<script>
+    const imgPosition = document.querySelectorAll(".aspect-ratio-169 img")
+    const imgContainer = document.querySelector('.aspect-ratio-169')
+    const dotItem = document.querySelectorAll(".dot")
+    let imgNuber = imgPosition.length
+    let Index = 0
+    imgPosition.forEach(function (image, Index) {
+        image.style.left = Index * 100 + "%"
+        dotItem[Index].addEventListener("click", function () {
+            banner(Index)
+        })
+    })
+    function imgSlide() {
+        Index++;
+        console.log(Index)
+        if (Index >= imgNuber) { Index = 0 }
+        banner(Index)
+    }
+    function banner(Index) {
+        imgContainer.style.left = "-" + Index * 100 + "%"
+        const dotActive = document.querySelector('.active')
+        dotActive.classList.remove("active")
+        dotItem[Index].classList.add("active")
+    }
+    setInterval(imgSlide, 5000)
+
+
+</script>
+

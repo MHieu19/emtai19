@@ -1,0 +1,137 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="WebPhoneMobileModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="bill">
+    <Key>
+      <PropertyRef Name="bill_id" />
+    </Key>
+    <Property Name="bill_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="client_id" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+    <Property Name="date_order" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="descriptions" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="client" Relationship="Self.FK_bill_client" FromRole="bill" ToRole="client" />
+    <NavigationProperty Name="billdetail" Relationship="Self.FK_billdetail_bill" FromRole="bill" ToRole="billdetail" />
+  </EntityType>
+  <EntityType Name="billdetail">
+    <Key>
+      <PropertyRef Name="bill_id" />
+      <PropertyRef Name="product_id" />
+    </Key>
+    <Property Name="bill_id" Type="Int32" Nullable="false" />
+    <Property Name="product_id" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="quanlity" Type="Int32" />
+    <Property Name="price" Type="Double" />
+    <NavigationProperty Name="bill" Relationship="Self.FK_billdetail_bill" FromRole="billdetail" ToRole="bill" />
+    <NavigationProperty Name="product" Relationship="Self.FK_billdetail_product" FromRole="billdetail" ToRole="product" />
+  </EntityType>
+  <EntityType Name="category">
+    <Key>
+      <PropertyRef Name="category_id" />
+    </Key>
+    <Property Name="category_id" Type="Int32" Nullable="false" />
+    <Property Name="category_name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="product" Relationship="Self.FK_product_category" FromRole="category" ToRole="product" />
+  </EntityType>
+  <EntityType Name="client">
+    <Key>
+      <PropertyRef Name="client_id" />
+    </Key>
+    <Property Name="client_id" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="client_name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="address" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="phone" Type="String" MaxLength="11" FixedLength="false" Unicode="true" />
+    <Property Name="email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="bill" Relationship="Self.FK_bill_client" FromRole="client" ToRole="bill" />
+  </EntityType>
+  <EntityType Name="product">
+    <Key>
+      <PropertyRef Name="product_id" />
+    </Key>
+    <Property Name="product_id" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="product_name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="category_id" Type="Int32" />
+    <Property Name="price" Type="Double" />
+    <Property Name="product_detail" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="product_image" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="billdetail" Relationship="Self.FK_billdetail_product" FromRole="product" ToRole="billdetail" />
+    <NavigationProperty Name="category" Relationship="Self.FK_product_category" FromRole="product" ToRole="category" />
+  </EntityType>
+  <Association Name="FK_bill_client">
+    <End Role="client" Type="Self.client" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="bill" Type="Self.bill" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="client">
+        <PropertyRef Name="client_id" />
+      </Principal>
+      <Dependent Role="bill">
+        <PropertyRef Name="client_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_billdetail_bill">
+    <End Role="bill" Type="Self.bill" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="billdetail" Type="Self.billdetail" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="bill">
+        <PropertyRef Name="bill_id" />
+      </Principal>
+      <Dependent Role="billdetail">
+        <PropertyRef Name="bill_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_billdetail_product">
+    <End Role="product" Type="Self.product" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="billdetail" Type="Self.billdetail" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="product">
+        <PropertyRef Name="product_id" />
+      </Principal>
+      <Dependent Role="billdetail">
+        <PropertyRef Name="product_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_product_category">
+    <End Role="category" Type="Self.category" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="product" Type="Self.product" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="category">
+        <PropertyRef Name="category_id" />
+      </Principal>
+      <Dependent Role="product">
+        <PropertyRef Name="category_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="WebPhoneMobileEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="bill" EntityType="Self.bill" />
+    <EntitySet Name="billdetail" EntityType="Self.billdetail" />
+    <EntitySet Name="category" EntityType="Self.category" />
+    <EntitySet Name="client" EntityType="Self.client" />
+    <EntitySet Name="product" EntityType="Self.product" />
+    <AssociationSet Name="FK_bill_client" Association="Self.FK_bill_client">
+      <End Role="client" EntitySet="client" />
+      <End Role="bill" EntitySet="bill" />
+    </AssociationSet>
+    <AssociationSet Name="FK_billdetail_bill" Association="Self.FK_billdetail_bill">
+      <End Role="bill" EntitySet="bill" />
+      <End Role="billdetail" EntitySet="billdetail" />
+    </AssociationSet>
+    <AssociationSet Name="FK_billdetail_product" Association="Self.FK_billdetail_product">
+      <End Role="product" EntitySet="product" />
+      <End Role="billdetail" EntitySet="billdetail" />
+    </AssociationSet>
+    <AssociationSet Name="FK_product_category" Association="Self.FK_product_category">
+      <End Role="category" EntitySet="category" />
+      <End Role="product" EntitySet="product" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

@@ -1,0 +1,17 @@
+﻿.form-group {
+    padding: 5px;
+}
+.btn-sm {
+    --bs-btn-padding-x: 50.9935px;
+    background: #030254;
+    letter-spacing: 1.2px;
+    border: #030254 1px solid;
+    border-radius: 8px;
+    color: #fff;
+}
+.btn-sm:hover {
+    color: #030254;
+    background: #fff;
+    border: #030254 1px solid;
+    /* opacity: 0.5;*/
+}

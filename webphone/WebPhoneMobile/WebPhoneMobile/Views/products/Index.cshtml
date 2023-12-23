@@ -1,0 +1,110 @@
+﻿@model PagedList.IPagedList<WebPhoneMobile.Models.product>
+@using WebPhoneMobile.Models;
+@using PagedList.Mvc;
+<link rel="stylesheet" href="~/Content/PagedList.css" />
+<link rel="stylesheet" href="~/Content/styleProduct.css"/>
+@{
+    ViewBag.Title = "All Products";
+}
+
+
+<section>
+    <div>
+        <div class="title">
+            <div class="title-one">
+                <div class="title-content">
+                    <h2>ALL PRODUCT</h2>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div> 
+        <div class="flex">
+            <div class="arrange-one">
+                <p>
+                    @if (Request.IsAuthenticated && User.IsInRole("Admin"))
+                    {
+                    @Html.ActionLink("add new product", "Create")
+                    }
+                </p>
+            </div>
+            <div class="arrange">
+                <h2>arrange</h2>
+                <button class="btn btn-sm">
+                    @Html.ActionLink(" Price", "Index", new
+                    {
+                        sortOrder = ViewBag.SortByPrice
+                    }, new { @class = "ti-stats-up" })
+                </button>
+                <button class="btn btn-sm">
+                    @Html.ActionLink(" Price", "Index", new
+                    {
+                        sortOrder = ViewBag.SortByPrice
+                    }, new { @class = "ti-stats-down" })
+                </button>
+                <button class="btn btn-sm">
+                    @Html.ActionLink("Name", "Index", new
+                    {
+                        sortOrder = ViewBag.SortByName
+                    })
+                </button>
+            </div>
+        </div>       
+    </div>
+    <div class="section-table">
+        <table class="table">
+            <tr>
+                <th style="text-align:center ">Product Name</th>
+                <th>Price</th>
+                <th>Image</th>
+                <th>Category</th>
+                <th style="text-align:center ">Operation</th>
+            </tr>
+
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td style="text-align: center; font-family: 'themify' ">
+                        @Html.DisplayFor(modelItem => item.product_name)
+                    </td>
+                    <td><span style="font-weight:700">$@Html.DisplayFor(modelItem => item.price).00</span></td>
+                    <td>
+                        @Html.Image("../" + item.product_image, "", "70")
+                    </td>
+                    <td style="font-family: 'themify' ">@Html.DisplayFor(modelItem => item.category.category_name)</td>
+                    <td style="text-align:center ">
+                        @if (Request.IsAuthenticated && User.IsInRole("Admin"))
+                        {
+                            @Html.ActionLink("Edit", "Edit", new { id = item.product_id })
+                        }
+                        <a class="btn btn-info btn-sm" href="@Url.Action("Details", "products",new {id = item.product_id})">
+                            DETAIL
+                        </a>
+                        @*<button class="btn btn-sm">@Html.ActionLink("Details", "Details", new { id = item.product_id })</button>*@
+                        @if (Request.IsAuthenticated && User.IsInRole("Admin"))
+                        {
+                            @Html.ActionLink("Delete", "Delete", new { id = item.product_id })
+                        }
+                    </td>
+                </tr>
+            }
+        </table>
+    </div>
+    <div>
+        <div id="page" style="font-family: 'themify'; font-weight: 700;">
+            Trang @(Model.PageCount < Model.PageNumber?0:Model.PageNumber)
+            / @Model.PageCount
+            @Html.PagedListPager(Model, page => Url.Action("Index",
+            new
+            {
+            page,
+            sortOrder = ViewBag.CurrentSort
+            }))
+        </div>
+    </div>
+</section>
+
+
+
+
+

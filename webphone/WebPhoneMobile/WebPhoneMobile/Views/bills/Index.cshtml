@@ -1,0 +1,40 @@
+﻿@model IEnumerable<WebPhoneMobile.Models.bill>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Bills</h2>
+
+<p>
+    @Html.ActionLink("Add invoice", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>Bill code</th>
+        <th>Order date</th>
+        <th>descriptions</th>
+        <th>Client name</th>
+        <th>Operation</th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                <a href="@Url.Action("Index", "billdetails", new {bill_id = item.bill_id})">
+                    @Html.DisplayFor(modelItem => item.bill_id)
+                </a>
+            </td>
+            <td>@Html.DisplayFor(modelItem => item.date_order)</td>
+            <td>@Html.DisplayFor(modelItem => item.descriptions)</td>
+            <td>@Html.DisplayFor(modelItem => item.client.client_name)</td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.bill_id }) |
+                @Html.ActionLink("Details", "Details", new { id = item.bill_id }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.bill_id })
+            </td>
+        </tr>
+    }
+
+</table>

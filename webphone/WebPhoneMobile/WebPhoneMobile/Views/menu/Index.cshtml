@@ -1,0 +1,16 @@
+﻿
+<link href="~/Content/styleLayout.css" rel="stylesheet" />
+
+<ul class="subnav">
+    @foreach (var item in ViewBag.category_name)
+    {
+        <li>
+            <a href="@Url.Action("Index", "Home", new {category_id = item.Key})">
+                @item.Value
+            </a>
+        </li>
+    }
+</ul>
+
+
+

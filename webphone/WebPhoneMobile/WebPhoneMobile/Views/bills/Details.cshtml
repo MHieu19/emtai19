@@ -1,0 +1,42 @@
+﻿@model WebPhoneMobile.Models.bill
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>bill</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.date_order)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.date_order)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.descriptions)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.descriptions)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.client.client_name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.client.client_name)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.bill_id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

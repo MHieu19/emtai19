@@ -1,0 +1,170 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>H195_2005CT0021</title>
+    <link rel="shortcut icon" type="image/png" href="~/Images/logo.png"/>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+    <link href="~/Content/styleLayout.css" rel="stylesheet" />
+    <link rel="stylesheet" href="~/Content/themify-icons/themify-icons.css" />
+</head>
+
+<body>
+    <div id="main">
+        <div id="header">
+            <div id="nav-logo">
+                @*<a href="/Home">*@<img src="~/Images/mssv.png"/>@*</a>*@
+            </div>
+            <div id="nav-mid">
+                <ul id="nav">
+                    <li>@Html.ActionLink("Home", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })</li>
+                    <li>
+                        <a href="">
+                            Category<i class="nav-arrow-down dti-angle-down"></i>
+                        </a>
+
+                        @{Html.RenderAction("Index", "menu");}
+                    </li>
+                    <li>@Html.ActionLink("Product", "Index", "products", new { area = "" }, new { @class = "nav-link" })</li>
+                    @if (Request.IsAuthenticated && User.IsInRole("Admin"))
+                    {
+                        <li>@Html.ActionLink("Client", "Index", "clients", new { area = "" }, new { @class = "nav-link" })</li>
+                        <li>@Html.ActionLink("Bill", "Index", "bills")</li>
+                    }
+                    @if (Request.IsAuthenticated && User.IsInRole("Admin"))
+                    {
+                        <li>@Html.ActionLink("Admin", "Index", "Admin")</li>
+                    }
+                </ul>
+            </div>    
+            <div id="nav-login">
+                <div class="nav_login">
+                    <div class="shopping_cart">
+                        <a class="ti-shopping-cart-full" href="@Url.Action("showToCart", "shoppingcart")" style="color: #fff">
+                            @Html.Action("BagCart", "shoppingcart")
+                        </a>
+                    </div>
+                    <div class="login">
+                        @Html.Partial("_LoginPartial")
+                    </div>
+                </div>
+            </div>            
+        </div>
+    </div>
+    <div class="container body-content">
+        @RenderBody()
+        <hr />
+    </div>
+    <footer class="page-footer">
+        <div class="footer-top">
+            <div class="page-main">
+                <div class="footer-links-column">
+                    <div class="footer-colum-title">
+                        <h3>Contact Us</h3>
+                    </div>
+                    <div class="footer-column-content">
+                        <div class="content">
+                            <p class="address">
+                                <strong><span>Address: </span></strong>
+                                <span>52, HM, MLB, CN, TV</span>
+                            </p>
+                            <p class="email">
+                                <strong><span>Mail us: </span></strong>
+                                <span><a href="" title="">033hieu033tmh0609@gmail.com</a></span>
+                            </p>
+                            <p class="phone">
+                                <strong><span>Phone: </span></strong>
+                                <span>+84 333 210 509</span>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="footer-links-column">
+                    <div class="footer-colum-title">
+                        <h3>Follow Us</h3>
+                    </div>
+                    <div class="footer-column-content">
+                        <ul class="footer links">
+                            <li class="nav item ti-facebook"><a href="#">Facebook</a></li>
+                            <li class="nav item ti-instagram"><a href="#">Instagram</a></li>
+                            <li class="nav item ti-pinterest-alt"><a href="#">Pinterest</a></li>
+                            <li class="nav item ti-twitter-alt"><a href="#">Twitter</a></li>
+                            <li class="nav item ti-youtube"><a href="#">Youtube</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="footer-links-column">
+                    <div class="footer-colum-title">
+                        <h3>My Account</h3>
+                    </div>
+                    <div class="footer-column-content">
+                        <ul class="footer links">
+                            <li class="nav item ti-arrow-circle-right"><a href="#">My Account</a></li>
+                            <li class="nav item ti-arrow-circle-right"><a href="/Account/Login">Login</a></li>
+                            <li class="nav item ti-arrow-circle-right"><a href="/shoppingcart/showToCart">My Cart</a></li>
+                            <li class="nav item ti-arrow-circle-right"><a href="#">My Compare</a></li>
+                            <li class="nav item ti-arrow-circle-right"><a href="#">My Wishlist</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="footer-links-column">
+                    <div class="footer-colum-title">
+                        <h3>Quick Links</h3>
+                    </div>
+                    <div class="footer-column-content">
+                        <ul class="footer links">
+                            <li class="nav item ti-arrow-circle-right"><a href="#">Privacy and Cookie Policy </a></li>
+                            <li class="nav item ti-arrow-circle-right"><a href="#">Contact Us </a></li>
+                            <li class="nav item ti-arrow-circle-right"><a href="#">Orders and Returns </a></li>
+                            <a href="/Home"><img src="~/Images/logo.png" style="height: 94px; background-color: #fff; border-radius: 10px;" /></a>
+</ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <div class="page-main">
+                <div class="copuright-outer">
+                    <small class="copyright">
+                        <span>Copyright 2023 Next. All rights reserved.</span>
+                    </small>
+                    <span class="payment-icons">
+                        <ul>
+                            <li><a href="#"><img class="image-responsive middle-block" src="https://demo4techies.com/mage/magetheme108/pub/media/wysiwyg/paymet/americanexpress.png" alt="americanexpress"></a></li>
+                            <li><a href="#"><img class="image-responsive middle-block" src="https://demo4techies.com/mage/magetheme108/pub/media/wysiwyg/paymet/discover.png" alt="discover"></a></li>
+                            <li><a href="#"><img class="image-responsive middle-block" src="https://demo4techies.com/mage/magetheme108/pub/media/wysiwyg/paymet/maestro.png" alt="maestro"></a></li>
+                            <li><a href="#"><img class="image-responsive middle-block" src="https://demo4techies.com/mage/magetheme108/pub/media/wysiwyg/paymet/master.png" alt="master"></a></li>
+                            <li><a href="#"><img class="image-responsive middle-block" src="https://demo4techies.com/mage/magetheme108/pub/media/wysiwyg/paymet/visa.png" alt="visa"></a></li>
+                        </ul>
+                    </span>
+                </div>
+            </div>
+        </div>
+        @*<script type="text/javascript" xml="space">
+                require(['jquery'], function () {
+                    var windowWidth = jQuery(window).width();
+                    if (windowWidth < 768) {
+                        jQuery('.footer-links-column .footer-column-content').hide();
+                        jQuery(document).on('click', '.footer-links-column', function () {
+                            jQuery(this).addClass('active-column');
+                            jQuery(this).find('.footer-column-content').slideDown();
+                        });
+                        jQuery(document).on('click', '.footer-column-content', function (e) {
+                            e.preventdefault();
+                            return false;
+                        });
+                        jQuery(document).on('click', '.footer-links-column.active-column', function () {
+                            jQuery(this).removeClass('active-column');
+                            jQuery(this).find('.footer-column-content').slideUp();
+                        });
+                    }
+                });
+            </script>*@
+    </footer>
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+</body>
+</html>
